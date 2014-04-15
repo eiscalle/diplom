@@ -1,0 +1,8 @@
+Django
+PIL
+Pillow
+South
+django-ckeditor
+django-filebrowser
+django-grappelli
+psycopg2

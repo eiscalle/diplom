@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Опрос:</h2>
+    <p>{{ poll.type.content }}</p>
+
+    <center>
+        <form method="POST">
+            {% block Question %}
+                <input name="question" type="hidden" value="{{ question.pk }}">
+                <input name="poll_type" type="hidden" value="{{ poll.type.tag }}">
+                {{ question.content }}
+                <ul>
+                    {% if poll.type.tag == 'cooperation' %}
+                        {% include 'portal/poll/cooperation.html' %}
+                    {% else %}
+                        {% include 'portal/poll/normal.html' %}
+                    {% endif %}
+                </ul>
+            {% endblock Question %}
+            <input type="submit">
+        </form>
+    </center>
+{% endblock %}

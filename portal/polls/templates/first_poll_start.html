@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load polls_extras %}
+
+
+{% block content %}
+<form method="post" action="">
+{% csrf_token %}
+{{ formset.management_form }}
+    <div>
+        Вопрос: {{ question.text }}
+    </div>
+{% for form in formset %}
+    {{ form.errors }}
+    <div>
+        Отдел: {{ departments|get_item:form.department.value }}
+        <input type="hidden" value="{{ form.department.value }}" name="{{ form.department.html_name }}">
+    </div>
+    <div>
+        ответ: {{ form.answer }}
+    </div>
+{% endfor %}
+<input type="submit" value="Отправить">
+</form>
+{% endblock %}
