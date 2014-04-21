@@ -28,6 +28,11 @@ class Video(models.Model):
                            extensions=['.mp4', ],
                            max_length=300,
     )
+    poster = FileBrowseField('Постер',
+                           directory='videos/posters/',
+                           extensions=['.jpg', '.png', '.jpeg'],
+                           max_length=300,
+    )
     is_moderated = models.BooleanField('Отмодерировано', default=False)
     user = models.ForeignKey(DiplomUser, verbose_name='Пользователь', related_name='videos')
 
@@ -52,7 +57,7 @@ class Subtitle(models.Model):
     )
 
     def __unicode__(self):
-        self.video.name
+        return '%s: %s' % (self.video.name, self.lang)
 
     class Meta:
         verbose_name = 'Субтитр'

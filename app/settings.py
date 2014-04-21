@@ -241,6 +241,17 @@ LOGGING = {
     }
 }
 
+FILEBROWSER_EXTENSIONS = {
+    'Folder': [''],
+    'Image': ['.jpg','.jpeg','.gif','.png','.tif','.tiff'],
+    'Archive': ['.rar','.zip'],
+    'Pdf': ['.pdf'],
+    'Document': ['.doc','.rtf','.txt','.xls','.csv'],
+    'Video': ['.mov','.wmv','.mpeg','.mpg','.avi','.rm'],
+    'Audio': ['.mp3','.mp4','.wav','.aiff','.midi','.m4p'],
+    'Subtitles': ['.srt', ],
+}
+
 if CONFIG.SETTINGS['ENV'] == 'test':
     from settings_test import *
 if CONFIG.SETTINGS['ENV'] == 'dev' or CONFIG.SETTINGS['ENV'] == 'local':

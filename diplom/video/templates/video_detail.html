@@ -1,5 +1,44 @@
 {% extends 'base.html' %}
-<div>{{ object.name }}</div>
-{% for video in videos %}
-    <div><a href="{{ video.get_absolute_url }}">{{ video.name }}</a></div>
-{% endfor %}
+{% load static %}
+
+
+{% block add_to_head %}
+    <link rel="stylesheet" href="{% static 'app/plugins/speed/css/speed.css' %}">
+    <link rel="stylesheet" href="{% static 'app/plugins/dictionary/css/dictionary.css' %}">
+    <link rel="stylesheet" href="{% static 'app/plugins/doublesubtitles/css/doublesubtitles.css' %}">
+    <link rel="stylesheet" href="{% static 'app/plugins/nextprev/css/nextprev.css' %}">
+    <link rel="stylesheet" href="{% static 'app/plugins/timecaption/css/timecaption.css' %}">
+    <link rel="stylesheet" href="{% static 'app/plugins/trackprogress/css/trackprogress.css' %}">
+
+    <script src="{% static 'app/plugins/trackprogress/js/mep-feature-trackprogress.js' %}"></script>
+    <script src="{% static 'app/plugins/timecaption/js/mep-feature-timecaption.js' %}"></script>
+    <script src="{% static 'app/plugins/doublesubtitles/js/mep-feature-doublesubtitles.js' %}"></script>
+    <script src="{% static 'app/plugins/dictionary/js/mep-dictionary.js' %}"></script>
+    <script src="{% static 'app/plugins/nextprev/js/mep-nextprev.js' %}"></script>
+    <script src="{% static 'app/plugins/speed/js/mep-feature-speed.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+    <div>{{ object.name }}</div>
+    <video id="player1" width="720" height="405" poster="{{ object.poster.url }}" controls="controls">
+        <source type="video/mp4" src="{{ object.source.url }}" title="{{ object.name }}"/>
+        {% for sub in object.subtitles.all %}
+            <track kind="subtitles" src="{{ sub.source.url }}" srclang="{{ sub.lang }}" />
+        {% endfor %}
+    </video>
+
+    <script>
+      var video_options = {
+        features: ['playpause', 'timecaption', 'duration2', 'trackprogress', 'prev', 'repeat', 'next', 'volume', 'doublesubtitles', 'dictionary', 'speedupdown'],
+
+        // some other settings, more details here: mediaelementjs.com/#options
+      }
+    </script>
+
+    <script>
+       var player = new MediaElementPlayer('#player1', video_options);
+    </script>
+
+{% endblock %}

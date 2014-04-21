@@ -18,12 +18,12 @@ class CustomIndexDashboard(Dashboard):
             children=[
                 modules.ModelList(
                     title=u'Пользователи и группы',
-                    models=('portal.models.PortalUser', 'django.contrib.*')
+                    models=('diplom.user.models.DiplomUser', 'django.contrib.*')
                 ),
                 modules.ModelList(
-                    title=u'Опросы',
+                    title=u'Сайт',
                     models=(
-                        'portal.polls.models.*',
+                        'diplom.video.models.*',
                     )
                 ),
             ]
