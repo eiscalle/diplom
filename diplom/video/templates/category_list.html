@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% for cat in object_list %}
+    <div><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></div>
+{% endfor %}

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+<div>{{ object.name }}</div>
+{% for video in videos %}
+    <div><a href="{{ video.get_absolute_url }}">{{ video.name }}</a></div>
+{% endfor %}

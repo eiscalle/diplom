@@ -6,7 +6,7 @@ CONFIG = __import__('app.config').config
 TEMPLATE_DEBUG = DEBUG = False
 
 # Project's title which will be shown in admin interface
-GRAPPELLI_ADMIN_TITLE = 'Hr - portal'
+GRAPPELLI_ADMIN_TITLE = 'Diplom'
 
 # Default project dashboard, you probably won't need to change it
 GRAPPELLI_INDEX_DASHBOARD = 'app.dashboard.CustomIndexDashboard'
@@ -28,16 +28,16 @@ SERVER_EMAIL = 'Hr-portal.ru <error@ailove.ru>'
 # of the tuple should be a tuple of (Full name, email address).
 MANAGERS = ADMINS = (('error', 'error@ailove.ru'),)
 
-AUTH_USER_MODEL = 'user.PortalUser'
+AUTH_USER_MODEL = 'user.DiplomUser'
 
 TAG_COOPERATION_POLL = 'cooperation'
 TAG_RATING_SELF_POLL = 'rating_self'
 TAG_RATING_EMPLOYEE_POLL = 'rating_employee'
 
 
-AUTHENTICATION_BACKENDS = (
-    'portal.backends.FabricBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'portal.backends.FabricBackend',
+# )
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -208,9 +208,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'portal.user',
-    'portal.polls',
-    'portal.super_site',
+    'diplom.user',
+    'diplom.video',
 )
 
 # A sample logging configuration. The only tangible logging
