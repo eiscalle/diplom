@@ -1,21 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block add_to_head %}
+    <style type="text/css">
+        #vct{
+           margin-top: 10px;
+        }
+        .vctd{
+            padding-left: 20px;
+        }
+    .error{
+        height: 20px;
+        background-color: red;
+        margin-top: 5px;
+        width: 350px;
+        vertical-align: middle;
+        color: white;
+        padding-left: 10px;
+        font-weight: bold;
+        padding-top: 2px;
+        font-size: 14px;
+    }
+    </style>
+{% endblock %}
 
 {% block content %}
+    <h2>Добавление видео</h2>
     {% for error in errors %}
-        <div>{{ error }}</div>
+        <div class="error">{{ error }}</div>
     {% endfor %}
     <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-        {{ form.as_p }}
-        <div>
-            Ru Subs:
-            <input type="file" name="ru_sub"/>
-        </div>
-        <div>
-            En Subs:
-            <input type="file" name="en_sub"/>
-        </div>
-        <input type="submit" value="submit">
+        <table id="vct">
+        <tr><td>{{ form.name.label }}:</td> <td class="vctd">{{ form.name }}</td></tr>
+        <tr><td>{{ form.category.label }}:</td> <td class="vctd">{{ form.category }}</td></tr>
+        <tr><td>{{ form.source.label }}:</td> <td class="vctd">{{ form.source }}</td></tr>
+        <tr><td>{{ form.poster.label }}:</td> <td class="vctd">{{ form.poster }}</td></tr>
+        <tr>
+            <td>Русские субтитры:</td>
+            <td class="vctd"><input type="file" name="ru_sub"/>
+        </tr>
+        <tr>
+            <td>Английские субтитры:</td>
+            <td class="vctd"><input type="file" name="en_sub"/></td>
+        </tr>
+        <tr style="margin-top: 10px;"><td><input type="submit" value="Добавить"></td></tr>
+        </table>
     </form>
 {% endblock %}

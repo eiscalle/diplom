@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h2>Регистрация на сайте</h2>
 <form action="" method="post">
     {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="submit">
+        <div>Email: <input name="login" type="text" value="" style="margin-left: 94px;" /></div>
+        <div>Пароль: <input name="password" type="password" value="" style="margin-left: 82px;" /></div>
+        <div>Повторите пароль: <input name="password" type="password" value="" style="margin-left: 20px;" /></div>
+        <input type="submit" value="Войти" style="margin-top: 10px; width: 100px;">
     </form>
 {% endblock %}

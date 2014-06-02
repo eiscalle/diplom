@@ -41,13 +41,25 @@ class VideoCreate(CreateView):
         self.ru_sub = self.request.FILES.get('ru_sub')
         self.en_sub = self.request.FILES.get('en_sub')
         if not self.ru_sub:
-            self.errors.append('Пожалуйста, добавьте русские субтитры.')
+            self.errors.append('Русские субтитры: Обязательное поле.')
         if not self.en_sub:
-            self.errors.append('Пожалуйста, добавьте английские субтитры.')
+            self.errors.append('Английские субтитры: Обязательное поле.')
 
-        if self.errors:
-            return self.get(request, *args, **kwargs)
-        return super(VideoCreate, self).post(request, *args, **kwargs)
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid() and not self.errors:
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        if self.errors is None:
+            self.errors = []
+        for key, error in form.errors.items():
+            self.errors.append(form.fields[key].label + ': ' + error[0])
+
+        return super(VideoCreate, self).form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super(VideoCreate, self).get_context_data(**kwargs)

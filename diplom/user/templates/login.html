@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h2>Вход на сайт</h2>
 <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
-        <div>Login: <input name="login" type="text" value="" /></div>
-        <div>Password: <input name="password" type="password" value="" /></div>
-        <div>Remember me: <input name="remember_me" type="checkbox" /></div>
-        <input type="submit" value="submit">
+        <div>Email: <input name="login" type="text" value="" style="margin-left: 32px;" /></div>
+        <div>Пароль: <input name="password" type="password" value="" style="margin-left: 20px;" /></div>
+        <div>Запомнить <input name="remember_me" type="checkbox" style="padding-top: 2px;" /></div>
+        <input type="submit" value="Войти" style="margin-top: 10px; width: 100px;">
     </form>
 {% endblock %}
